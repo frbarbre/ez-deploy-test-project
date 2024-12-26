@@ -82,8 +82,6 @@ sudo wget -q https://raw.githubusercontent.com/certbot/certbot/main/certbot_ngin
 sudo openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 2048
 
 cat > /etc/nginx/sites-available/app << 'EOL'
-limit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;
-
 server {
     listen 80;
     server_name $DOMAIN_NAME;
