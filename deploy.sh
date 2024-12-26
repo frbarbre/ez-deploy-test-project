@@ -52,6 +52,13 @@ else
 fi
 
 
+# Set up root environment variables
+cat > "$APP_DIR/.env" << EOL
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+POSTGRES_DB=db
+EOL
+
 # Set up ez-next environment variables
 cat > "$APP_DIR/./frontend/.env" << EOL
 API_URL=http://laravel
