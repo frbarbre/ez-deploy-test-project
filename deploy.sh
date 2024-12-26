@@ -82,7 +82,7 @@ sudo certbot certonly --standalone -d $DOMAIN_NAME --non-interactive --agree-tos
 sudo wget -q https://raw.githubusercontent.com/certbot/certbot/main/certbot_nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf -P /etc/letsencrypt/
 sudo openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 2048
 
-cat > /etc/nginx/sites-available/$NGINX_CONFIG_NAME << 'EOL'
+cat > /etc/nginx/sites-available/$NGINX_CONFIG_NAME << EOL
 server {
     listen 80;
     server_name $DOMAIN_NAME;
@@ -97,9 +97,6 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/$DOMAIN_NAME/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-
-    # Enable rate limiting
-    limit_req zone=mylimit burst=20 nodelay;
 
 
     location / {
