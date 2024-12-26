@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 async function getData() {
   const response = await fetch(process.env.API_URL + "/api/test");
   const data = await response.json();
