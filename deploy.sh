@@ -12,9 +12,9 @@ EMAIL="fr.barbre@gmail.com"
 NGINX_CONFIG_NAME="ezdeploy"
 
 # Environment Variables
-POSTGRES_USER="very_secret_value"
-POSTGRES_PASSWORD="very_secret_value"
-POSTGRES_DB="very_secret_value"
+POSTGRES_USER="postgres"
+POSTGRES_PASSWORD="password"
+POSTGRES_DB="db"
 
 
 # Update and install dependencies
@@ -54,17 +54,17 @@ fi
 
 # Set up next environment variables
 cat > "$APP_DIR/./frontend/.env" << EOL
-API_URL=very_secret_value
+API_URL=http://laravel
 EOL
 
 # Set up laravel environment variables
 cat > "$APP_DIR/./backend/.env" << EOL
-DB_CONNECTION=very_secret_value
-DB_HOST=very_secret_value
-DB_PORT=very_secret_value
-DB_DATABASE=very_secret_value
-DB_USERNAME=very_secret_value
-DB_PASSWORD=very_secret_value
+DB_CONNECTION=pgsql
+DB_HOST=postgres
+DB_PORT=9891
+DB_DATABASE=db
+DB_USERNAME=postgres
+DB_PASSWORD=password
 EOL
 
 
