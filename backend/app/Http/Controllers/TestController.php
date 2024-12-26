@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 
 class TestController extends Controller
 {
@@ -10,24 +11,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $placeholderUsers = [
-            [
-                'id' => 1,
-                'name' => 'John Doe',
-                'email' => 'example@email.com',
-            ],
-            [
-                'id' => 2,
-                'name' => 'Jane Doe',
-                'email' => 'example2@email.com',
-            ],
-            [
-                'id' => 3,
-                'name' => 'John Smith',
-                'email' => 'example3@email.com',
-            ],
-        ];
-
-        return response()->json($placeholderUsers);
+        $users = User::all();
+        return response()->json($users);
     }
 }
