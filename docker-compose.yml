@@ -1,5 +1,5 @@
 services:
-  next:
+  ez-next:
     build:
       context: ./frontend
     ports:
@@ -7,11 +7,11 @@ services:
     networks:
       - cool
     depends_on:
-      - laravel
+      - ez-laravel
     environment:
-      API_URL: http://laravel
+      API_URL: http://ez-laravel
 
-  laravel:
+  ez-laravel:
     build:
       context: ./backend
     ports:
@@ -19,19 +19,14 @@ services:
     networks:
       - cool
     depends_on:
-      - postgres
+      - ez-postgres
 
-  postgres:
+  ez-postgres:
     image: postgres:latest
     ports:
       - "9891:5432"
     networks:
       - cool
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
 
 networks:
   cool:

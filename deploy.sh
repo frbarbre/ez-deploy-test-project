@@ -52,12 +52,12 @@ else
 fi
 
 
-# Set up next environment variables
+# Set up ez-next environment variables
 cat > "$APP_DIR/./frontend/.env" << EOL
 API_URL=http://laravel
 EOL
 
-# Set up laravel environment variables
+# Set up ez-laravel environment variables
 cat > "$APP_DIR/./backend/.env" << EOL
 DB_CONNECTION=pgsql
 DB_HOST=postgres
