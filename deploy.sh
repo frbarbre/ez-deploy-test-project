@@ -4,11 +4,12 @@
 GITHUB_TOKEN="your_token_here"
 
 # Script Variables
-REPO_URL="https://$GITHUB_TOKEN@https://github.com/frbarbre/ez-deploy-test-project"
+REPO_URL="https://$GITHUB_TOKEN@github.com/frbarbre/ez-deploy-test-project"
 APP_DIR=~/ezdeploy/myapp
 SWAP_SIZE="1G"
 DOMAIN_NAME="ezdeploy.frederikbarbre.dk"
 EMAIL="fr.barbre@gmail.com"
+NGINX_CONFIG_NAME="ezdeploy"
 
 # Environment Variables
 POSTGRES_USER="very_secret_value"
@@ -70,8 +71,8 @@ EOL
 # Install and configure Nginx
 sudo apt install nginx -y
 
-sudo rm -f /etc/nginx/sites-available/app
-sudo rm -f /etc/nginx/sites-enabled/app
+sudo rm -f /etc/nginx/sites-available/$NGINX_CONFIG_NAME
+sudo rm -f /etc/nginx/sites-enabled/$NGINX_CONFIG_NAME
 
 sudo systemctl stop nginx
 
@@ -81,7 +82,7 @@ sudo certbot certonly --standalone -d $DOMAIN_NAME --non-interactive --agree-tos
 sudo wget -q https://raw.githubusercontent.com/certbot/certbot/main/certbot_nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf -P /etc/letsencrypt/
 sudo openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 2048
 
-cat > /etc/nginx/sites-available/app << 'EOL'
+cat > /etc/nginx/sites-available/$NGINX_CONFIG_NAME << 'EOL'
 server {
     listen 80;
     server_name $DOMAIN_NAME;
@@ -128,7 +129,7 @@ server {
 }
 EOL
 
-sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled/app
+sudo ln -s /etc/nginx/sites-available/$NGINX_CONFIG_NAME /etc/nginx/sites-enabled/$NGINX_CONFIG_NAME
 sudo systemctl restart nginx
 
 # Build and run Docker Compose services
