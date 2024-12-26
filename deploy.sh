@@ -74,6 +74,13 @@ DB_USERNAME=postgres
 DB_PASSWORD=password
 EOL
 
+# Set up ez-postgres environment variables
+cat > "$APP_DIR/.env" << EOL
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+POSTGRES_DB=db
+EOL
+
 
 # Install and configure Nginx
 sudo apt install nginx -y
