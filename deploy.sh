@@ -67,7 +67,7 @@ EOL
 # Set up ez-laravel environment variables
 cat > "$APP_DIR/./backend/.env" << EOL
 DB_CONNECTION=pgsql
-DB_HOST=postgres
+DB_HOST=ez-postgres
 DB_PORT=5432
 DB_DATABASE=db
 DB_USERNAME=postgres
