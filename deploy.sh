@@ -86,7 +86,7 @@ cat > /etc/nginx/sites-available/$NGINX_CONFIG_NAME << EOL
 server {
     listen 80;
     server_name ${DOMAIN_NAME};
-    return 301 https://$host$request_uri;
+    return 301 https://$server_name$request_uri;
 }
 
 server {
@@ -103,19 +103,19 @@ server {
         proxy_pass http://localhost:3004;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
+        proxy_set_header Connection "upgrade";
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
         
         proxy_buffering off;
-        proxy_set_header X-Accel-Buffering no;
+        proxy_set_header X-Accel-Buffering "no";
     }
 
     location /api/ {
         proxy_pass http://localhost:8080;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
+        proxy_set_header Connection "upgrade";
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
         
