@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-
 class TestController extends Controller
 {
     /**
@@ -11,7 +9,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return response()->json($users);
+        $message = "Hello World";
+        return response()->json($message);
     }
 }
