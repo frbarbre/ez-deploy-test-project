@@ -1,0 +1,24 @@
+services:
+  next:
+    build:
+      context: ./next
+    ports:
+      - "3003:3000"
+    networks:
+      - ez-deploy-test-project-network
+    depends_on:
+      - laravel
+    environment:
+      API_URL: http://laravel
+
+  laravel:
+    build:
+      context: ./laravel
+    ports:
+      - "8081:80"
+    networks:
+      - ez-deploy-test-project-network
+
+networks:
+  ez-deploy-test-project-network:
+    driver: bridge
